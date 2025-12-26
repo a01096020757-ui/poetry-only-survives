@@ -7,7 +7,7 @@
 <style>
   body { 
     margin: 0; 
-    background: #0b0b0b; /* ±íÀº °ËÀº»ö ¹è°æ */
+    background: #0b0b0b; /* ê¹Šì€ ê²€ì€ìƒ‰ ë°°ê²½ */
     overflow: hidden; 
   }
   #stage { 
@@ -19,7 +19,7 @@
     position: absolute; 
     left: 50%;
     transform: translateX(-50%);
-    /* Stefans ½ºÅ¸ÀÏ: °íÁ¤Æø ÆùÆ®·Î 'ÄÚµå'³ª 'µ¥ÀÌÅÍ' ´À³¦ °­Á¶ */
+    /* Stefans ìŠ¤íƒ€ì¼: ê³ ì •í­ í°íŠ¸ë¡œ 'ì½”ë“œ'ë‚˜ 'ë°ì´í„°' ëŠë‚Œ ê°•ì¡° */
     font: 32px/1 ui-monospace, Menlo, Consolas, "Courier New", monospace;
     color: #eaeaea; 
     white-space: pre;
@@ -39,15 +39,15 @@
 <body>
 
 <div id="stage"></div>
-<div class="hint">click = restart ¡¤ space = pause</div>
+<div class="hint">click = restart Â· space = pause</div>
 
 <script>
 const PHRASE = "POETRY ONLY SURVIVES";
 const stage = document.getElementById("stage");
 
 let running = true;
-let speed = 1.0;        // °¡¼ÓÀÇ ½ÃÀÛ°ª
-let stepGap = 22;       // °è´Ü °£°İ
+let speed = 1.0;        // ê°€ì†ì˜ ì‹œì‘ê°’
+let stepGap = 22;       // ê³„ë‹¨ ê°„ê²©
 let y = window.innerHeight + 40;
 
 function addStep(text){
@@ -61,29 +61,29 @@ function addStep(text){
 function loop(){
   if(!running) return requestAnimationFrame(loop);
 
-  // Brian Kim Stefans ½ºÅ¸ÀÏÀÇ ÇÙ½É: '°¡¼Ó'
-  // ½Ã°£ÀÌ Áö³¯¼ö·Ï ½Ã°¡ ÅëÁ¦ ºÒ°¡´ÉÇÏ°Ô »¡¶óÁü
+  // Brian Kim Stefans ìŠ¤íƒ€ì¼ì˜ í•µì‹¬: 'ê°€ì†'
+  // ì‹œê°„ì´ ì§€ë‚ ìˆ˜ë¡ ì‹œê°€ í†µì œ ë¶ˆê°€ëŠ¥í•˜ê²Œ ë¹¨ë¼ì§
   speed *= 1.002; 
 
-  // ÀÏÁ¤ °£°İ¸¶´Ù »õ·Î¿î °è´Ü »ı¼º
-  // speed°¡ »¡¶óÁú¼ö·Ï »ı¼º ºóµµ(¹Ğµµ)µµ ³ô¾ÆÁü
+  // ì¼ì • ê°„ê²©ë§ˆë‹¤ ìƒˆë¡œìš´ ê³„ë‹¨ ìƒì„±
+  // speedê°€ ë¹¨ë¼ì§ˆìˆ˜ë¡ ìƒì„± ë¹ˆë„(ë°€ë„)ë„ ë†’ì•„ì§
   if (Math.random() < 0.12 * speed) {
     addStep(PHRASE);
-    y -= stepGap; // »ı¼º À§Ä¡°¡ Á¡Á¡ À§·Î ¿Ã¶ó°¨ (È­¸éÀ» Ã¤¿ò)
+    y -= stepGap; // ìƒì„± ìœ„ì¹˜ê°€ ì ì  ìœ„ë¡œ ì˜¬ë¼ê° (í™”ë©´ì„ ì±„ì›€)
   }
 
-  // ¸ğµç ÅØ½ºÆ®¸¦ À§·Î ÀÌµ¿
+  // ëª¨ë“  í…ìŠ¤íŠ¸ë¥¼ ìœ„ë¡œ ì´ë™
   const children = [...stage.children];
   for(let el of children){
     const ty = parseFloat(el.style.top);
     el.style.top = (ty - speed) + "px";
     
-    // È­¸é À§·Î ¹ş¾î³ª¸é Á¦°Å (¸Ş¸ğ¸® °ü¸®)
+    // í™”ë©´ ìœ„ë¡œ ë²—ì–´ë‚˜ë©´ ì œê±° (ë©”ëª¨ë¦¬ ê´€ë¦¬)
     if (ty < -40) el.remove();
   }
 
-  // ¹Ù´Ú¿¡ µµ´ŞÇÏ¸é ¸®¼Â (·çÇÁ)
-  // »ı¼º À§Ä¡(y)°¡ È­¸é ²À´ë±â¸¦ ³Ñ¾î°¡¸é ÃÊ±âÈ­
+  // ë°”ë‹¥ì— ë„ë‹¬í•˜ë©´ ë¦¬ì…‹ (ë£¨í”„)
+  // ìƒì„± ìœ„ì¹˜(y)ê°€ í™”ë©´ ê¼­ëŒ€ê¸°ë¥¼ ë„˜ì–´ê°€ë©´ ì´ˆê¸°í™”
   if (y < -window.innerHeight) {
     y = window.innerHeight + 40;
     speed = 1.0;
@@ -93,10 +93,10 @@ function loop(){
   requestAnimationFrame(loop);
 }
 
-// ÃÊ±â ½ÇÇà
+// ì´ˆê¸° ì‹¤í–‰
 loop();
 
-// ÀÎÅÍ·¢¼Ç
+// ì¸í„°ë™ì…˜
 window.addEventListener("click", ()=>{
   y = window.innerHeight + 40;
   speed = 1.0;
