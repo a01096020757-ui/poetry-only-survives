@@ -19,15 +19,15 @@
 </head>
 <body>
 <div id="stage"></div>
-<div class="hint">click = restart ¡¤ space = pause</div>
+<div class="hint">click = restart Â· space = pause</div>
 
 <script>
 const PHRASE = "POETRY ONLY SURVIVES";
 const stage = document.getElementById("stage");
 
 let running = true;
-let speed = 1.0;        // °¡¼ÓÀÇ ½ÃÀÛ°ª
-let stepGap = 22;       // °è´Ü °£°İ
+let speed = 1.0;        // ê°€ì†ì˜ ì‹œì‘ê°’
+let stepGap = 22;       // ê³„ë‹¨ ê°„ê²©
 let y = window.innerHeight + 40;
 
 function addStep(text){
@@ -41,24 +41,24 @@ function addStep(text){
 function loop(){
   if(!running) return requestAnimationFrame(loop);
 
-  // ¸Å ÇÁ·¹ÀÓ¸¶´Ù ¾à°£¾¿ °¡¼Ó
+  // ë§¤ í”„ë ˆì„ë§ˆë‹¤ ì•½ê°„ì”© ê°€ì†
   speed *= 1.002;
 
-  // ÀÏÁ¤ °£°İ¸¶´Ù »õ·Î¿î °è´Ü »ı¼º
+  // ì¼ì • ê°„ê²©ë§ˆë‹¤ ìƒˆë¡œìš´ ê³„ë‹¨ ìƒì„±
   if (Math.random() < 0.12 * speed) {
     addStep(PHRASE);
     y -= stepGap;
   }
 
-  // ¸ğµç °è´ÜÀ» À§·Î ÀÌµ¿
+  // ëª¨ë“  ê³„ë‹¨ì„ ìœ„ë¡œ ì´ë™
   [...stage.children].forEach(el=>{
     const ty = parseFloat(el.style.top);
     el.style.top = (ty - speed) + "px";
-    // È­¸é À§·Î ¹ş¾î³ª¸é Á¦°Å
+    // í™”ë©´ ìœ„ë¡œ ë²—ì–´ë‚˜ë©´ ì œê±°
     if (ty < -40) el.remove();
   });
 
-  // ¹Ù´Ú¿¡ µµ´ŞÇÏ¸é ¸®¼Â (·çÇÁ)
+  // ë°”ë‹¥ì— ë„ë‹¬í•˜ë©´ ë¦¬ì…‹ (ë£¨í”„)
   if (y < -window.innerHeight) {
     y = window.innerHeight + 40;
     speed = 1.0;
@@ -69,7 +69,7 @@ function loop(){
 }
 loop();
 
-// ÀÎÅÍ·¢¼Ç
+// ì¸í„°ë™ì…˜
 addEventListener("click", ()=>{
   y = window.innerHeight + 40;
   speed = 1.0;
@@ -82,7 +82,7 @@ addEventListener("resize", ()=>{
   y = window.innerHeight + 40;
 });
 
-<div class="copyright">¨Ï 2025 Sunjae Jun. All rights reserved.</div>
+<div class="copyright">â“’ 2025 Sunjae Jun. All rights reserved.</div>
 
 </script>
 </body>
